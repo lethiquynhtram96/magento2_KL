@@ -8,12 +8,38 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="header-wrapper">
-            <container name="before.header" label="before-header" htmlTag="div" htmlClass="header before" before="-"/>
-            <container name="header" label="header" htmlTag="div" htmlClass="header " after="before.header"/>
-            <container name="menu" label="menu" htmlTag="div" htmlClass="menu" after="header"/>
-  
-
+            <container name="header-wrapper-top" label="header-wrapper-top" htmlTag="div" htmlClass="header-wrapper-top" before="-"/>
+            <container name="header-wrapper-bottom" label="header-wrapper-bottom" htmlTag="div" htmlClass="header-wrapper-bottom" after="header-wrapper-top"/>
         </referenceContainer>
+
+         <referenceContainer name="header-wrapper-bottom">
+            <container name="header-content" label="header-content" htmlTag="div" htmlClass="header-content" before="-"/>           
+        </referenceContainer>
+
+        <referenceContainer name="header-content">
+            <container name="header-main-menu" label="header-main-menu" htmlTag="div" htmlClass="header-main-menu" before="-"/>           
+        </referenceContainer>
+
+
+
+        <referenceContainer name="page.wrapper">
+        	<container name="full-slideshow-wrapper" label="full-slideshow-wrapper" htmlTag="div" htmlClass="full-slideshow-wrapper" after="header" before="main.content"/>
+        </referenceContainer>
+
+        <referenceContainer name="full-slideshow-wrapper">
+        	<container name="slideshow-container" label="slideshow-container" htmlTag="div" htmlClass="slideshow-container" before="-"/>
+        </referenceContainer>
+
+
+
+
+       	<move element="main.content" destination="page.wrapper" after="full-slideshow-wrapper"/>
+        <move element="navigation.sections" destination="header-main-menu" before="-"/>
+        <move element="logo" destination="header-wrapper-top" before="-"/>
+        <move element="minicart" destination="header-wrapper-top" after="logo"/>
+        <move element="top.search" destination="header-content" after="header-main-menu"/>
+
+
 
     </body>
 </page>
